@@ -1,11 +1,10 @@
 import { galleryItems } from "./gallery-items.js";
 
 const gallery = document.querySelector("div.gallery");
-let lightBox;
 
 for (const image of galleryItems) {
   const newGalleryItem = document.createElement("div");
-  newGalleryItem.classList.add("gallery_item");
+  newGalleryItem.classList.add("gallery__item");
 
   const newGalleryLink = document.createElement("a");
   newGalleryLink.classList.add("gallery__link");
