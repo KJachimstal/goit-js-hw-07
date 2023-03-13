@@ -22,14 +22,21 @@ for (const image of galleryItems) {
   gallery.insertAdjacentElement("afterbegin", newGalleryItem);
 }
 
-// document.querySelector("img.gallery__image").onclick = () => {
-//   basicLightbox
-//     .create(
-//       `
-// 		<img width="1400" height="900" src="https://placehold.it/1400x900">
-// 	`
-//     )
-//     .show();
-// };
+gallery.addEventListener("click", onImageClick);
 
-console.log(galleryItems);
+function onImageClick(event) {
+  event.preventDefault();
+  if (event.target.nodeName !== "IMG") {
+    return;
+  }
+  const instance = basicLightbox.create(`
+  <img width="800" height="600" src="${event.target.dataset.source}">
+  `);
+  instance.show();
+
+  gallery.addEventListener("keydown", (event) => {
+    if (event.code === "Escape") {
+      instance.close();
+    }
+  });
+}
