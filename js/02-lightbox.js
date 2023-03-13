@@ -5,20 +5,23 @@ const gallery = document.querySelector("ul.gallery");
 for (const image of galleryItems) {
   const galleryItem = document.createElement("a");
   galleryItem.classList.add("gallery__item");
+  galleryItem.href = image.original;
 
   const img = document.createElement("img");
   img.classList.add("gallery__image");
   img.src = image.preview;
   img.alt = image.description;
-  img.setAttribute("data-source", image.original);
 
   galleryItem.insertAdjacentElement("afterbegin", img);
   gallery.insertAdjacentElement("afterbegin", galleryItem);
 }
 
-console.log(gallery);
-
 gallery.addEventListener("click", onImageClick);
+
+let lightbox = new SimpleLightbox(".gallery a", {
+  captionsData: "alt",
+  captionDelay: 250,
+});
 
 function onImageClick(event) {
   event.preventDefault();
@@ -26,10 +29,5 @@ function onImageClick(event) {
     return;
   }
 
-  gallery.addEventListener("keydown", (event) => {
-    if (event.code === "Escape") {
-    }
-  });
+  lightbox.on("show.simplelightbox");
 }
-
-console.log(galleryItems);

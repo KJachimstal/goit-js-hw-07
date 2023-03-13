@@ -7,8 +7,8 @@ for (const image of galleryItems) {
   newGalleryItem.classList.add("gallery__item");
 
   const newGalleryLink = document.createElement("a");
-  newGalleryLink.classList.add("gallery__link");
   newGalleryLink.href = image.original;
+  newGalleryLink.classList.add("gallery__link");
 
   const newImg = document.createElement("img");
   newImg.classList.add("gallery__image");
